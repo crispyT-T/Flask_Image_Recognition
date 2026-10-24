@@ -247,7 +247,8 @@ the pre-commit hooks, run Pylint, run pytest. A green run completes in about 47 
 
 ![Workflow runs](screenshots/04-actions-runs.jpg)
 
-**Figure 4.** Workflow runs. #1 passed, #2 failed, #3 passed after the fix.
+**Figure 4.** Workflow runs. #1 passed, #2 failed, #3 passed after the fix described in
+section 11; #4 onwards are the documentation commits.
 
 ---
 

@@ -1,5 +1,10 @@
-# Importing required libs
+"""Flask web application for hand-sign digit recognition.
+
+Serves an upload form and returns the digit predicted from the uploaded image.
+"""
+
 from flask import Flask, render_template, request
+
 from model import preprocess_img, predict_result
 
 # Instantiating flask app
@@ -9,12 +14,14 @@ app = Flask(__name__)
 # Home route
 @app.route("/")
 def main():
+    """Render the upload form."""
     return render_template("index.html")
 
 
 # Prediction route
 @app.route('/prediction', methods=['POST'])
 def predict_image_file():
+    """Predict the digit in the uploaded image and render the result page."""
     try:
         if request.method == 'POST':
             img = preprocess_img(request.files['file'].stream)

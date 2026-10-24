@@ -1,0 +1,14 @@
+************* Module app
+app.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+app.py:11:0: C0116: Missing function or method docstring (missing-function-docstring)
+app.py:17:0: C0116: Missing function or method docstring (missing-function-docstring)
+app.py:24:4: W0702: No exception type(s) specified (bare-except)
+app.py:17:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+************* Module model
+model.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+model.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
+model.py:23:0: C0116: Missing function or method docstring (missing-function-docstring)
+
+-----------------------------------
+Your code has been rated at 7.50/10
+

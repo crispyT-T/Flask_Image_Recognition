@@ -1,59 +1,55 @@
-# Hand Digit Image Recognition
+# Hand Sign Digit Recognition — with CI
 
-This web app is made using Flask framework and is all about predicting the hand sign digit images based on the deep learning model trained using transfer learning.
+A Flask web application that predicts a digit from a photograph of a hand sign, using a
+Keras model trained by transfer learning.
 
-![Python](https://img.shields.io/badge/python-8338ec)
-![Keras](https://img.shields.io/badge/keras-219ebc)
-![Numpy](https://img.shields.io/badge/numpy-ffafcc)
-![Pillow](https://img.shields.io/badge/pillow-00bbf9)
-![Flask](https://img.shields.io/badge/flask-f72585)
-![Bootstrap](https://img.shields.io/badge/bootstrap-57cc99)
+Forked from [Sachin-crypto/Flask_Image_Recognition](https://github.com/Sachin-crypto/Flask_Image_Recognition)
+and brought under continuous integration: Pylint, pre-commit, pytest and GitHub Actions.
 
-# Glimpse
+[![CI](https://github.com/crispyT-T/Flask_Image_Recognition/actions/workflows/ci.yml/badge.svg)](https://github.com/crispyT-T/Flask_Image_Recognition/actions/workflows/ci.yml)
 
-https://user-images.githubusercontent.com/72191416/201943098-c8f5fd8b-ec7d-4e5d-883d-8b69109b946f.mp4
+## Running it
 
-# Dependencies
+Requires **Python 3.11**. The pinned dependencies do not support newer versions, and
+TensorFlow 2.15 is the last release that bundles Keras 2, which the saved `.h5` model
+needs.
 
-- Flask
-- TensorFlow (Keras)
-- Numpy
-- Pillow (PIL)
-
-## UI Framework
-
-- Bootstrap
-
-# Get Started
-
-Clone the repository in your project directory.
-
-```commandline
-git clone https://github.com/Sachin-crypto/Flask_Image_Recognition.git
-```
-OR
-
-Download as **[ZIP](https://github.com/Sachin-crypto/Flask_Image_Recognition/archive/refs/heads/main.zip)** file and extract it in your project directory.
-
-# Install Dependencies
-
-Install the dependencies from the **requirements.txt** file.
-
-```commandline
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+python app.py
 ```
 
-# Run
+Open <http://127.0.0.1:9000>, choose an image from `test_images/` and submit.
 
-**cd** into the current directory and run the script.
+## Developing
 
-```commandline
-flask --app app.py run --debug
+```bash
+pip install -r requirements-dev.txt
+pre-commit install          # run the checks before each commit
+pytest                      # 19 tests, under a second
+pytest -m "not slow"        # skip the one test that loads the real model
+pylint app.py model.py conftest.py tests/
 ```
-Click [here](https://geekpython.in/run-flask-app-from-the-command-line-in-windows) to get the detailed guide on running the Flask app from the command line.
 
-# Test
+The same checks run in CI on every push and pull request to `main`.
 
-- Choose an image from the test images folder.
-- You will see a preview of the uploaded image.
-- Click on **Submit** button and see the magic.
+## Layout
+
+| Path | What it is |
+| --- | --- |
+| `app.py` | Flask application: the upload form and the prediction route |
+| `model.py` | Model loading, image preprocessing, inference |
+| `digit_model.h5` | The trained Keras model, 28 MB |
+| `templates/`, `static/` | Jinja2 templates, CSS and the client-side image preview |
+| `tests/`, `conftest.py` | The test suite and its fixtures |
+| `test_images/` | 100 sample images, ten per digit |
+| `docs/` | Setup log, architecture notes, quality notes, diagrams, screenshots |
+
+## Documentation
+
+- [Setup log](docs/setup-log.md) — the problems found getting the legacy project to run
+- [Architecture](docs/architecture.md) — structure, request flow, diagram
+- [Code quality and tests](docs/quality-and-tests.md) — Pylint, pre-commit, pytest
+- [Assignment report](docs/REPORT.md) — the full write-up

@@ -6,3 +6,6 @@ venv/
 .vscode/
 .DS_Store
 .pytest_cache/
+
+# Report build artefacts
+docs/report.html

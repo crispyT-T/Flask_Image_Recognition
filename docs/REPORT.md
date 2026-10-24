@@ -92,11 +92,18 @@ Both were removed and a `.gitignore` added.
 
 ### Evidence that it runs
 
-| | |
-| --- | --- |
-| ![Home page](screenshots/01-home-page.jpg) | **The home page** served at `http://127.0.0.1:9000/`. |
-| ![Image selected](screenshots/02-image-selected.jpg) | **An image selected.** `static/js/image_upload.js` previews it client-side and writes the file name into the label. Nothing has reached the server yet. |
-| ![Prediction](screenshots/03-prediction-result.jpg) | **The prediction.** A hand sign for 4 returns `4`. |
+![Home page](screenshots/01-home-page.jpg)
+
+**Figure 1.** The home page served at `http://127.0.0.1:9000/`.
+
+![Image selected](screenshots/02-image-selected.jpg)
+
+**Figure 2.** An image selected. `static/js/image_upload.js` previews it client-side and
+writes the file name into the label. Nothing has reached the server yet.
+
+![Prediction](screenshots/03-prediction-result.jpg)
+
+**Figure 3.** The prediction. A hand sign for 4 returns `4`.
 
 Verified from the command line as well:
 
@@ -339,6 +346,8 @@ all.
 
 ![Workflow runs](screenshots/04-actions-runs.jpg)
 
+**Figure 4.** The workflow runs: #1 green, #2 red, #3 green.
+
 ### CI pipeline diagram
 
 ![CI pipeline](diagrams/ci-pipeline.svg)
@@ -363,6 +372,8 @@ Executable `.venv/bin/pylint` not found
 ```
 
 ![Failed run](screenshots/05-actions-failed-run.jpg)
+
+**Figure 5.** Run #2: the pre-commit step failed and the later steps were skipped.
 
 The cause was a genuine defect in the pre-commit configuration. The Pylint hook was
 declared as:

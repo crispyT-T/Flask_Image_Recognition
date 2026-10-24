@@ -1,0 +1,25 @@
+# Checks that run before a commit is created.
+# Install once per clone with:  pre-commit install
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml           # the GitHub Actions workflow is YAML
+      - id: check-added-large-files
+        args: [--maxkb=30720]    # allow digit_model.h5 (28 MB), block anything larger
+      - id: check-merge-conflict
+      - id: debug-statements     # no stray breakpoint() or pdb in a commit
+
+  - repo: local
+    hooks:
+      # Run Pylint from the project's own virtualenv rather than a pre-commit
+      # managed one, so it sees Flask, Keras and the rest of the dependencies
+      # and resolves imports the same way CI does.
+      - id: pylint
+        name: pylint
+        entry: .venv/bin/pylint
+        language: system
+        types: [python]
+        require_serial: true

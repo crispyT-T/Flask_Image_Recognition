@@ -11,4 +11,3 @@ model.py:23:0: C0116: Missing function or method docstring (missing-function-doc
 
 -----------------------------------
 Your code has been rated at 7.50/10
-

@@ -32,7 +32,9 @@ def predict_image_file():
         # ValueError: the array did not fit the shape the model expects.
         app.logger.exception("Could not process the uploaded file")
         error = "File cannot be processed."
-        return render_template("result.html", err=error)
+        # 400, not 200: the upload was the problem, and a caller should be able
+        # to tell a rejected file from a successful prediction by status alone.
+        return render_template("result.html", err=error), 400
 
 
 # Driver code

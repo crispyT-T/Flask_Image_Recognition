@@ -80,11 +80,16 @@ def test_the_real_model_classifies_a_known_sample(real_model):
     Mocked tests prove the plumbing. This one proves the model file in the
     repository is the trained model and still loads.
     """
+    # Guard against the test passing vacuously: the stub also returns a
+    # (1, 10) vector peaking at 4, so prove this is a genuine Keras model.
+    assert type(real_model).__module__.startswith("keras")
+
     batch = preprocess_img("test_images/4/Sign 4 (92).jpeg")
     probabilities = real_model.predict(batch, verbose=0)
 
     assert probabilities.shape == (1, 10)
     assert np.argmax(probabilities[0]) == 4
+    assert probabilities[0][4] > 0.5, "the correct class should dominate"
 
 
 def test_stub_probabilities_are_a_valid_distribution():

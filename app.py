@@ -23,12 +23,14 @@ def main():
 def predict_image_file():
     """Predict the digit in the uploaded image and render the result page."""
     try:
-        if request.method == 'POST':
-            img = preprocess_img(request.files['file'].stream)
-            pred = predict_result(img)
-            return render_template("result.html", predictions=str(pred))
-
-    except:
+        img = preprocess_img(request.files['file'].stream)
+        pred = predict_result(img)
+        return render_template("result.html", predictions=str(pred))
+    except (KeyError, OSError, ValueError):
+        # KeyError: no file field in the request.
+        # OSError: Pillow could not identify or read the image.
+        # ValueError: the array did not fit the shape the model expects.
+        app.logger.exception("Could not process the uploaded file")
         error = "File cannot be processed."
         return render_template("result.html", err=error)
 

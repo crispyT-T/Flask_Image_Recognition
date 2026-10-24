@@ -297,3 +297,23 @@ so both see Flask and Keras and resolve imports identically. Run **#3** passed.
 The same checks run at two gates. Pre-commit runs them locally before a commit exists;
 GitHub Actions runs them again on the pushed branch, because local hooks can be bypassed
 with `--no-verify` and CI should not assume they ran.
+
+---
+
+## 13. Reflection
+
+**The legacy application could not run anywhere but its author's machine.** Between the
+hardcoded `D:/SACHIN/...` model path and dependencies with no wheels for the current
+platform, neither problem was visible by reading the code — both surfaced only on trying
+to run it. A CI pipeline would have caught both on the first push, years earlier.
+
+**The Pylint score was the least useful signal it produced.** The docstrings moved it most
+and mattered least; the bare `except` moved it little and mattered most. The score counts
+how many messages remain, not how serious they were, so optimising it directly would have
+meant doing the cheap work first and calling it done.
+
+**CI earned its place immediately.** The one genuine failure — the Pylint hook pointing at
+a virtualenv path — was a defect no amount of local testing could have exposed, because
+the defect *was* the dependence on one particular machine. That it appeared on the very
+first run with the hooks enabled makes the point plainly: a check that only ever runs in
+one environment is not really a check.

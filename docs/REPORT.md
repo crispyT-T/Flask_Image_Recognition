@@ -1,5 +1,10 @@
 # Assignment 2 — Software Quality III: Build and Release (CSCN73010)
 
+<div class="idblock">
+  <div class="idrow"><span class="idlabel">Name</span><span class="idvalue">Amna Farid</span></div>
+  <div class="idrow"><span class="idlabel">Roll Number</span><span class="idvalue">9040297</span></div>
+</div>
+
 ## 1. GitHub repository
 
 <https://github.com/crispyT-T/Flask_Image_Recognition>

@@ -119,8 +119,8 @@ FAILED tests/test_routes.py::test_greyscale_image_is_rejected - assert 200 == 40
 4 failed, 15 passed in 1.43s
 ```
 
-The failing tests were committed first (`a0f88aa`) to record the problem, and the fix
-followed in `f091634`: the error branch now returns `400`. The page a person sees is
+The failing tests were committed first (`d6510fa`) to record the problem, and the fix
+followed in `754f24a`: the error branch now returns `400`. The page a person sees is
 unchanged — same template, same message — so the original behaviour is preserved for
 anyone using a browser, while a programmatic caller can now tell the difference.
 
@@ -129,10 +129,10 @@ All nineteen tests pass ([`evidence/05-pytest-passing.txt`](evidence/05-pytest-p
 ## Commit sequence
 
 ```
-f091634  fix: return 400 when the upload cannot be processed      <- tests pass
-a0f88aa  test: cover the routes, preprocessing and prediction     <- 4 tests fail
-e293af1  ci: run formatting checks and Pylint before every commit
-ace1a98  fix: catch the failures we expect and log the ones we do not   10.00/10
-fbb425f  style: add the module and function docstrings Pylint asked for  9.38/10
-cbf3610  ci: add a Pylint configuration                                  7.50/10
+754f24a  fix: return 400 when the upload cannot be processed      <- tests pass
+d6510fa  test: cover the routes, preprocessing and prediction     <- 4 tests fail
+219db52  ci: run formatting checks and Pylint before every commit
+76574b5  fix: catch the failures we expect and log the ones we do not   10.00/10
+f7d1742  style: add the module and function docstrings Pylint asked for  9.38/10
+1090844  ci: add a Pylint configuration                                  7.50/10
 ```

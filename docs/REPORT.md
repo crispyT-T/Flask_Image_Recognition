@@ -400,18 +400,23 @@ so both see Flask and Keras and resolve imports identically. Run **#3** passed.
 
 | Run | Commit | Result |
 | --- | --- | --- |
-| #1 | `b5544c0` docs: add the CI pipeline diagram | ✅ success |
-| #2 | `c6559dd` ci: run the pre-commit hooks in CI as well | ❌ **failure** |
-| #3 | `9b83ee6` fix: make the Pylint hook work outside a developer machine | ✅ success |
+| #1 | `807e663` docs: add the CI pipeline diagram | ✅ success |
+| #2 | `7d154b6` ci: run the pre-commit hooks in CI as well | ❌ **failure** |
+| #3 | `259f2c0` fix: make the Pylint hook work outside a developer machine | ✅ success |
+
+The hashes above are the current ones. The run pages on GitHub record the hashes those
+commits had when the runs executed, which differ: the history was rewritten afterwards to
+correct the author name on every commit, which changes every hash while leaving the
+content identical. The commit messages are the reliable way to match a run to a commit.
 
 ### Quality progression in the commit history
 
 Two further sequences were developed before the repository was pushed to GitHub, and are
 visible in the commit history with their recorded output in `docs/evidence/`:
 
-**A Pylint failure followed by a correction.** Commit `cbf3610` added the Pylint
+**A Pylint failure followed by a correction.** Commit `1090844` added the Pylint
 configuration while the code scored 7.50/10 — below the `fail-under=9.0` threshold, so
-Pylint exited non-zero. `fbb425f` added the missing docstrings (9.38) and `ace1a98` fixed
+Pylint exited non-zero. `f7d1742` added the missing docstrings (9.38) and `76574b5` fixed
 the error handling (10.00).
 
 **A failing test followed by a fix.** Writing the error-path tests exposed a real defect:
@@ -427,7 +432,7 @@ FAILED tests/test_routes.py::test_greyscale_image_is_rejected - assert 200 == 40
 4 failed, 15 passed in 1.43s
 ```
 
-Those tests were committed **failing** in `a0f88aa` to record the defect, and `f091634`
+Those tests were committed **failing** in `d6510fa` to record the defect, and `754f24a`
 fixed it by returning `400` from the error branch. The page a person sees is unchanged —
 same template, same message — so the original behaviour is preserved for anyone using a
 browser, while a programmatic caller can now tell the difference.
@@ -440,17 +445,17 @@ itself.
 ### Commit history
 
 ```
-9b83ee6  fix: make the Pylint hook work outside a developer machine     CI #3 pass
-c6559dd  ci: run the pre-commit hooks in CI as well                     CI #2 FAIL
-b5544c0  docs: add the CI pipeline diagram                              CI #1 pass
-7693776  ci: run Pylint and pytest on every push with GitHub Actions
-1033a65  docs: write up the Pylint, pre-commit and pytest work
-f091634  fix: return 400 when the upload cannot be processed            tests pass
-a0f88aa  test: cover the routes, preprocessing and prediction           4 tests FAIL
-e293af1  ci: run formatting checks and Pylint before every commit
-ace1a98  fix: catch the failures we expect and log the ones we do not   10.00/10
-fbb425f  style: add the module and function docstrings Pylint asked for  9.38/10
-cbf3610  ci: add a Pylint configuration                                  7.50/10
+259f2c0  fix: make the Pylint hook work outside a developer machine     CI #3 pass
+7d154b6  ci: run the pre-commit hooks in CI as well                     CI #2 FAIL
+807e663  docs: add the CI pipeline diagram                              CI #1 pass
+72a1bf0  ci: run Pylint and pytest on every push with GitHub Actions
+f200431  docs: write up the Pylint, pre-commit and pytest work
+754f24a  fix: return 400 when the upload cannot be processed            tests pass
+d6510fa  test: cover the routes, preprocessing and prediction           4 tests FAIL
+219db52  ci: run formatting checks and Pylint before every commit
+76574b5  fix: catch the failures we expect and log the ones we do not   10.00/10
+f7d1742  style: add the module and function docstrings Pylint asked for  9.38/10
+1090844  ci: add a Pylint configuration                                  7.50/10
 1d079e1  docs: describe the legacy structure, request flow and architecture
 7c12c5a  docs: record the setup problems and working run
 e07079b  build: pin dependencies that install on current platforms

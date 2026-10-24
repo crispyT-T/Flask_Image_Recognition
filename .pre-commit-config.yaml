@@ -14,12 +14,17 @@ repos:
 
   - repo: local
     hooks:
-      # Run Pylint from the project's own virtualenv rather than a pre-commit
-      # managed one, so it sees Flask, Keras and the rest of the dependencies
-      # and resolves imports the same way CI does.
+      # Run Pylint from whichever interpreter is active, rather than a
+      # pre-commit managed environment, so it sees Flask, Keras and the rest of
+      # the dependencies and resolves imports the way CI does.
+      #
+      # `python -m pylint`, not a path to one: locally that is the activated
+      # virtualenv, and on a CI runner it is the interpreter setup-python
+      # installed the dependencies into. A hardcoded .venv/bin/pylint worked on
+      # a developer machine and failed on the runner, which has no .venv.
       - id: pylint
         name: pylint
-        entry: .venv/bin/pylint
+        entry: python -m pylint
         language: system
         types: [python]
         require_serial: true
